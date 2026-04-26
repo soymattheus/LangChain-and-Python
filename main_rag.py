@@ -1,19 +1,15 @@
-from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 from langchain_community.document_loaders import TextLoader, PyPDFLoader
 from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
-import os
-
-load_dotenv()
-api_key = os.getenv("OPENAI_API_KEY")
 
 modelo = ChatOpenAI(
-    model="gpt-4o-mini",
-    temperature=0.5,
-    api_key=api_key
+    base_url="http://localhost:1234/v1",
+    model="google/gemma-3-1b",
+    api_key="not-needed", # LM Studio accepts any string
+    temperature=0.5
 )
 
 embeddings = OpenAIEmbeddings()
